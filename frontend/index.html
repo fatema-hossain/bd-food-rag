@@ -37,6 +37,15 @@
         </div>
       </form>
 
+      <form id="server" class="server" hidden>
+        <p>The answer server is not running right now. It is started from a Kaggle notebook; if you started it, paste the address it printed (it ends in <code>trycloudflare.com</code>).</p>
+        <label for="server-url">Server address</label>
+        <div class="server-row">
+          <input id="server-url" type="url" placeholder="https://….trycloudflare.com" required>
+          <button type="submit" class="send">Connect</button>
+        </div>
+      </form>
+
       <div class="examples" id="examples" aria-label="Example questions"></div>
     </section>
 

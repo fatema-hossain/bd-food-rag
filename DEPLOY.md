@@ -1,87 +1,73 @@
 # Free deployment, step by step
 
-Everything below is free: Kaggle (build the bundle), Hugging Face (backend Space on free CPU + a dataset repo for the bundle),
-GitHub (code + GitHub Pages for the frontend). About 30–45 minutes the first time, most of it waiting for builds.
+**Since July 2026, Hugging Face requires PRO for new Docker / Gradio Spaces on free CPU; only Static Spaces stay free.** So the free setup is:
 
 ```
-Kaggle notebook v9 ── section 17 ──► HF dataset  <you>/bd-food-rag-bundle
-GitHub repo (this) ── Action ──────► HF Space    <you>/bd-food-rag   (FastAPI + web app, CPU)
-                  └── Action ──────► GitHub Pages https://<github-user>.github.io/<repo>/  (same web app, calls the Space)
+Kaggle research notebook (v10) ── section 17 ──► HF dataset  Fatema042/bd-food-rag-bundle   (KB, thresholds, trained heads, thumbnails)
+                                                     │ downloaded at start-up        ▲ server.json = current server address
+Kaggle notebook "serve_on_kaggle" (GPU, free) ── FastAPI backend ── Cloudflare quick tunnel ──► https://….trycloudflare.com
+GitHub repo ── GitHub Actions ──► GitHub Pages  https://<github-user>.github.io/bd-food-rag/   (the web app; finds the server via server.json)
 ```
 
-## 1. Hugging Face: two tokens
+* **Frontend**: always online, free (GitHub Pages).
+* **Backend**: online while the serving notebook runs (up to ~12 h per run on Kaggle, browser can be closed). Ideal for demos, evaluations and
+  presentations. When it is not running, the page says the server is offline.
+* Want it online 24/7 for free? See *Option B* at the end (Oracle Cloud Always Free VM; needs a card for identity check, no charges).
 
-1. Create an account at huggingface.co.
-2. *Settings → Access Tokens*: create a **write** token (for Kaggle and GitHub) and, if you will keep the bundle private, a **read** token (for the Space).
+## 1. Hugging Face: token and bundle (already done if section 17 printed "uploaded to …")
+1. huggingface.co → profile picture → *Settings → Access Tokens* → **Create new token**, type **Write**. Copy it (`hf_…`).
+2. In the research notebook on Kaggle: *Add-ons → Secrets* → `HF_TOKEN` = the token (ticked).
+3. Section 17: `HF_BUNDLE_REPO = "Fatema042/bd-food-rag-bundle"`, then *Run All*.
+4. Keep that dataset **public** (default), so the web page can read `server.json`.
 
-## 2. Kaggle: export the bundle
+## 2. GitHub: put the code online
+1. github.com → **+ → New repository** → name `bd-food-rag`, **Public**, no README / .gitignore / license.
+2. Install Git (git-scm.com; on Windows it includes Git LFS). Unzip `shrag-app.zip`, open a terminal in the `shrag-app` folder
+   (Windows: right-click → *Open Git Bash here*):
+   ```bash
+   git lfs install
+   git remote add origin https://github.com/<your-github-username>/bd-food-rag.git
+   git push -u origin main
+   ```
+   Log in with *Sign in with your browser* when asked.
+3. Repo → **Settings → Pages** → *Build and deployment → Source*: **GitHub Actions**.
+4. Repo → **Actions** → *Frontend on GitHub Pages* → **Run workflow**. After about a minute your site is at
+   `https://<your-github-username>.github.io/bd-food-rag/` (it will say the server is offline until step 3 below).
 
-1. Open your notebook (v9) on Kaggle. *Add-ons → Secrets*: add `HF_TOKEN` = your **write** token, and tick it for this notebook.
-2. In section 17 set `HF_BUNDLE_REPO = "<your-hf-name>/bd-food-rag-bundle"`.
-3. Keep `DOMAIN = "bd"` in section 1 (or another domain, for a second app). Attaching your previous run's output (Add input → Notebook output) makes this much faster.
-4. *Run All*. The end of section 17 prints the bundle size and `uploaded to https://huggingface.co/datasets/...`.
+(The workflow *Sync to Hugging Face Space* is skipped automatically; it is only for people with HF PRO.)
 
-No token? The bundle is still written to `/kaggle/working/deploy_bundle/`: download it from the notebook's Output tab and upload the
-folder's contents on huggingface.co (*New dataset → Files → Add file → Upload*).
+## 3. Kaggle: start the server
+1. On Kaggle: **Create → New Notebook → File → Import Notebook** → upload `notebook/serve_on_kaggle.ipynb` from the zip.
+2. Right panel: **Accelerator: GPU T4** (x1 is enough), **Internet: On**. *Add-ons → Secrets*: tick `HF_TOKEN`.
+3. In the first code cell put your GitHub username in `APP_REPO` and `PAGES_URL` (`BUNDLE_REPO` is already `Fatema042/bd-food-rag-bundle`).
+4. Quick test: run the cells one by one. The 3rd cell prints `server: {'status': 'ok'}` and the parity check
+   (`decision_mismatches: 0` = same decisions as the research notebook); the 4th prints the public address and "published to … server.json".
+   Open your GitHub Pages site: it connects by itself.
+5. For a long session with the browser closed: **Save Version → Save & Run All (Commit)**. It serves for `SERVE_HOURS` (11.5 h).
+   To stop early: *View Active Events* → stop the run.
 
-## 3. Hugging Face: create the Space
+First start takes ~5–10 min (model downloads); later starts reuse Kaggle's model cache less often, so expect a few minutes each time.
 
-1. *New Space*: name `bd-food-rag`, SDK **Docker** (blank template), hardware **CPU basic (free)**, public.
-2. *Settings → Variables and secrets*:
-   * variable `SHRAG_BUNDLE_REPO` = `<your-hf-name>/bd-food-rag-bundle`
-   * secret `HF_TOKEN` = your **read** token (only needed if the dataset is private)
-   * optional: `SHRAG_USE_LLM` = `1` and `SHRAG_GEN_MODEL` = `Qwen/Qwen2.5-0.5B-Instruct` to paraphrase answers with a small LLM
-     (slow on free CPU, about 5–15 s per answer). Without it, answers are the verified knowledge-base sentences.
-   * optional: `SHRAG_NO_IMAGE_MODELS` = `1` for a text-only app that starts faster.
+## Updating
+* **New results** (you re-ran the research notebook + section 17): just restart the serving notebook.
+* **Changed notebook code**: `python tools/extract_core.py <research-notebook>.ipynb backend/shrag_core.py`, commit, push; restart the serving notebook.
+* **Frontend changes**: edit `frontend/`, commit, push; GitHub Pages redeploys.
 
-## 4. GitHub: push the code (it then syncs to the Space)
+## Option B: always online, still free (Oracle Cloud "Always Free")
+Oracle gives an *Always Free* ARM VM (up to 4 cores, 24 GB RAM). Sign-up needs a card for identity verification (no charge on Always Free).
+1. Create an *Ampere A1* instance (Ubuntu, 4 OCPU / 24 GB), open port 7860 in its security list.
+2. On the VM: `sudo apt install -y docker.io git && git clone https://github.com/<you>/bd-food-rag && cd bd-food-rag`
+3. `sudo docker build -t bdfood . && sudo docker run -d --restart=always -p 7860:7860 -e SHRAG_BUNDLE_REPO=Fatema042/bd-food-rag-bundle bdfood`
+4. Put `http://<vm-ip>:7860` (or a domain with HTTPS, e.g. a free Cloudflare tunnel on the VM) in the GitHub repo variable `SPACE_URL`
+   and re-run *Frontend on GitHub Pages*. CPU only: text answers ~1–3 s, photos ~2–6 s, LLM paraphrasing off.
 
-```bash
-git lfs install                      # thumbnails and pickles of demo_bundle are stored with Git LFS
-git init -b main && git add . && git commit -m "Bangladeshi food self-healing RAG app"
-git remote add origin https://github.com/<github-user>/bd-food-rag.git
-git push -u origin main
-```
+## Option C: Hugging Face PRO (paid) or an older account
+If you have PRO, create a **Docker** Space `Fatema042/bd-food-rag`, set its variable `SHRAG_BUNDLE_REPO`, add GitHub secret `HF_TOKEN` and
+variable `HF_SPACE = Fatema042/bd-food-rag`; the *Sync to Hugging Face Space* workflow then deploys it.
 
-In the GitHub repo: *Settings → Secrets and variables → Actions*:
-* secret `HF_TOKEN` = your HF **write** token
-* variable `HF_SPACE` = `<your-hf-name>/bd-food-rag`
-
-The **Sync to Hugging Face Space** action runs on every push to `main` (re-run it from the *Actions* tab the first time if the secret was added
-after the push). The Space builds the Docker image (about 10 min the first time), then downloads the models on start-up (about 6 GB,
-another 3–6 min). Watch the Space's *Logs* tab.
-
-Check it:
-* `https://<your-hf-name>-bd-food-rag.hf.space/api/health` → `{"status": "ok"}`
-* `https://<your-hf-name>-bd-food-rag.hf.space/api/parity` → `"decision_mismatches": 0` means the server makes the same decisions as the notebook
-* `https://<your-hf-name>-bd-food-rag.hf.space/` → the web app
-
-## 5. GitHub Pages (optional second front door)
-
-The Space already serves the web app. To also publish it on GitHub Pages:
-1. *Settings → Pages → Build and deployment → Source*: **GitHub Actions**.
-2. *Settings → Secrets and variables → Actions → Variables*: `SPACE_URL` = `https://<your-hf-name>-bd-food-rag.hf.space`
-3. Re-run the **Frontend on GitHub Pages** action. Your site: `https://<github-user>.github.io/bd-food-rag/`
-
-## Updating the app
-
-* **New results / new KB** (you re-ran the notebook): run section 17 again, then *Restart* the Space (Settings → Restart). No code change.
-* **Changed notebook code**: regenerate the backend core from the new notebook, commit and push:
-  `python tools/extract_core.py path/to/notebook.ipynb backend/shrag_core.py`
-* **Another domain** (Indian, Food-101): run the notebook with that `DOMAIN`, upload to a second dataset repo, and create a second Space with that `SHRAG_BUNDLE_REPO`.
-
-## Run it on your own computer or in Colab
-
+## Run it on your own computer
 ```bash
 pip install -r backend/requirements.txt
-SHRAG_BUNDLE=path/to/deploy_bundle uvicorn app:app --app-dir backend --port 7860     # open http://localhost:7860
-# or, with no installs at all, the synthetic test bundle and the standard-library server:
-python backend/devserver.py --bundle demo_bundle --port 8000
+SHRAG_BUNDLE_REPO=Fatema042/bd-food-rag-bundle uvicorn app:app --app-dir backend --port 7860      # open http://localhost:7860
+python backend/devserver.py --bundle demo_bundle --port 8000                                       # no installs, synthetic test bundle
 ```
-
-## Limits of the free tier (worth saying in your report)
-
-* Free Spaces **sleep after about 48 h without visitors**; the first request then waits for the restart (a few minutes).
-* CPU only: text answers take about 1–3 s, photos about 2–6 s. The 4-bit generator and the judges from the notebook need a GPU, so the
-  app answers extractively by default (the same verified sentences the notebook falls back to).
-* The free Space has 16 GB RAM; the default models use about 7 GB.

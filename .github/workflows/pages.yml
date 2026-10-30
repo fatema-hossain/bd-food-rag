@@ -1,5 +1,6 @@
 # Publish frontend/ on GitHub Pages, pointed at your Space.
-# Repo settings -> Pages -> Source: GitHub Actions;  variable SPACE_URL (e.g. https://fatemahossain0987-bd-food-rag.hf.space)
+# Repo settings -> Pages -> Source: GitHub Actions. No variable needed: open the page with ?api=<server address>.
+# Optional variable SPACE_URL bakes a fixed server address into config.js (e.g. an always-on server).
 name: Frontend on GitHub Pages
 on:
   push:
@@ -22,6 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Point the frontend at the Space
+        if: ${{ vars.SPACE_URL != '' }}
         run: echo "window.SHRAG_API = \"${{ vars.SPACE_URL }}\";" > frontend/config.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

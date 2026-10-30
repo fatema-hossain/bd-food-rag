@@ -7,6 +7,8 @@ on:
   workflow_dispatch:
 jobs:
   sync:
+    # optional: only if you host the backend in a Hugging Face Docker Space (needs HF PRO for new accounts since July 2026)
+    if: ${{ vars.HF_SPACE != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

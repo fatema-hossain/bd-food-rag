@@ -63,8 +63,8 @@ class Service:
         if not C.SMOKE and C.HAS_TF and C.HAS_TORCH and os.environ.get("SHRAG_NO_IMAGE_MODELS") != "1":
             from transformers import pipeline, CLIPModel, CLIPProcessor
             if C.CFG.get("CLF_MODEL"):
-                C.CLF = C.try_load("image-classifier:" + C.CFG["CLF_MODEL"], lambda: pipeline("image-classification", model=C.CFG["CLF_MODEL"], top_k=5, device=-1))
-            C.CLIP = C.try_load("clip:" + C.CFG["CLIP_MODEL"], lambda: (CLIPModel.from_pretrained(C.CFG["CLIP_MODEL"]).eval(), CLIPProcessor.from_pretrained(C.CFG["CLIP_MODEL"])))
+                C.CLF = C.try_load("image-classifier:" + C.CFG["CLF_MODEL"], lambda: pipeline("image-classification", model=C.model_src(C.CFG["CLF_MODEL"]), top_k=5, device=0 if C.GPU else -1))
+            C.CLIP = C.try_load("clip:" + C.CFG["CLIP_MODEL"], lambda: (CLIPModel.from_pretrained(C.model_src(C.CFG["CLIP_MODEL"])).to(C.DEVICE).eval(), CLIPProcessor.from_pretrained(C.model_src(C.CFG["CLIP_MODEL"]))))
         C.IMAGE_HOOK["search"] = C.image_search
         self.load_s = round(time.time() - t0, 1)
 

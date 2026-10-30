@@ -67,6 +67,12 @@ a { color: var(--green); }
 }
 .send:disabled { opacity: .55; cursor: progress; }
 
+.server { margin-top: 16px; padding: 14px 16px; border-radius: var(--r-lg); background: var(--chilli-tint); }
+.server p { margin: 0 0 8px; max-width: 64ch; }
+.server label { font-weight: 500; }
+.server-row { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
+.server-row input { flex: 1 1 260px; font: inherit; padding: 8px 10px; border: 1.5px solid var(--line); border-radius: var(--r-sm); }
+.server-row .send { margin-left: 0; }
 .examples { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 8px; }
 .examples button {
   border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 999px;

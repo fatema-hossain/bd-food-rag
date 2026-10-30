@@ -18,15 +18,18 @@ tuned on the notebook's dev split, so the deployed app behaves like the benchmar
 the evidence is about the dish, answers only from data, and declines when it cannot be sure.
 
 ```
-Kaggle notebook ── section 17 ──► deploy bundle ──► Hugging Face dataset repo
-                                                        │ downloaded at start-up
-GitHub repo (this) ──► GitHub Action ──► Hugging Face Space (FastAPI, CPU) ◄── frontend on GitHub Pages
+Kaggle research notebook ── section 17 ──► HF dataset (bundle + server.json)
+Kaggle "serve_on_kaggle" notebook (GPU) ── FastAPI ── Cloudflare tunnel ──► public https address
+GitHub repo (this) ── Actions ──► GitHub Pages web app (finds the server address in server.json)
 ```
+
+Hugging Face Docker Spaces need PRO for new accounts since July 2026, so the free route serves the backend from Kaggle (see DEPLOY.md).
 
 * `backend/shrag_core.py` – generated from the notebook by `tools/extract_core.py` (never edit by hand)
 * `backend/service.py` – loads the bundle into those functions, loads the models on CPU
 * `backend/app.py` – FastAPI routes; `backend/devserver.py` – the same routes with no dependencies (local testing)
 * `frontend/` – static web app (works on the Space itself and on GitHub Pages)
 * `demo_bundle/` – a tiny synthetic bundle so the app starts before you export a real one
+* `notebook/` – the research notebook (v10) and `serve_on_kaggle.ipynb` (runs the backend on Kaggle)
 
 See **DEPLOY.md** for the step-by-step free deployment.

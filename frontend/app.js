@@ -1,4 +1,9 @@
-const API = (window.SHRAG_API || "").replace(/\/$/, "");
+// server address: ?api=… in the link (remembered on this device) > config.js > same server as this page
+function storedApi() { try { return localStorage.getItem("shrag_api") || ""; } catch { return ""; } }
+function rememberApi(u) { try { u ? localStorage.setItem("shrag_api", u) : localStorage.removeItem("shrag_api"); } catch {} }
+const _qp = new URLSearchParams(location.search).get("api");
+if (_qp) rememberApi(_qp.trim());
+let API = ((_qp || storedApi() || window.SHRAG_API || "").trim()).replace(/\/$/, "");
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -56,14 +61,29 @@ async function api(path, opts = {}) {
 }
 
 const statusEl = $("#status");
-async function waitReady() {
+async function discover() {
+  if (!window.SHRAG_DISCOVERY) return null;
+  try {
+    const r = await fetch(window.SHRAG_DISCOVERY + (window.SHRAG_DISCOVERY.includes("?") ? "&" : "?") + "t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return null;
+    const j = await r.json(); return (j.url || "").replace(/\/$/, "") || null;
+  } catch { return null; }
+}
+async function waitReady(triedDiscovery = false) {
   for (let i = 0; i < 200; i++) {
     try {
       const h = await api("/api/health");
       if (h.status === "ok") break;
       if (h.status === "error") { statusEl.textContent = "Backend failed to start"; statusEl.classList.add("err"); return; }
       statusEl.textContent = "Loading models…";
-    } catch { statusEl.textContent = "Cannot reach the backend"; statusEl.classList.add("err"); }
+    } catch {
+      if (!triedDiscovery) {                       // saved / configured address dead (tunnel addresses change) -> ask the discovery file
+        statusEl.textContent = "Looking for the server…";
+        const u = await discover();
+        if (u && u !== API) { API = u; rememberApi(u); return waitReady(true); }
+      }
+      statusEl.textContent = "The server is offline"; statusEl.classList.add("err"); showServerForm(); return;
+    }
     await new Promise((r) => setTimeout(r, 3000));
   }
   try {
@@ -94,6 +114,14 @@ function renderAbout(info) {
       ${rows.map((r) => `<tr><td>${esc(r.system)}</td><td>${(+r.accuracy).toFixed(3)}</td><td>${(+r["halluc."]).toFixed(3)}</td><td>${(+r["abstain F1"]).toFixed(3)}</td></tr>`).join("")}</table>` : ""}
     ${info.smoke_bundle ? "<p><strong>Note:</strong> this server runs a test bundle built from synthetic data.</p>" : ""}`;
 }
+function showServerForm() {
+  const f = $("#server"); f.hidden = false; $("#server-url").value = API;
+}
+$("#server").onsubmit = (e) => {
+  e.preventDefault();
+  API = $("#server-url").value.trim().replace(/\/$/, ""); rememberApi(API);
+  $("#server").hidden = true; statusEl.classList.remove("err"); statusEl.textContent = "Connecting…"; waitReady();
+};
 $("#about-link").onclick = (e) => { e.preventDefault(); const a = $("#about"); a.hidden = !a.hidden; };
 
 // photo picking
