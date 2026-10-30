@@ -1,0 +1,16 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+transformers>=4.44
+sentence-transformers>=3.0
+huggingface_hub>=0.24
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+pydantic>=2
+numpy
+pandas
+scikit-learn
+scipy
+pillow
+rapidfuzz
+requests

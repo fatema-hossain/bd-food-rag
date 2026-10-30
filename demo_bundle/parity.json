@@ -1,0 +1,549 @@
+[
+ {
+  "q": "ডীমের তরকারি সম্পর্কে বলো",
+  "entities": [
+   "egg curry"
+  ],
+  "abstained": false,
+  "answer": "Dimer torkari (egg curry) (ডিমের তরকারি). Dimer torkari is boiled eggs cooked in a spiced onion and tomato gravy, sometimes with potatoes."
+ },
+ {
+  "q": "tell me about cotpoti",
+  "entities": [
+   "chotpoti"
+  ],
+  "abstained": false,
+  "answer": "Chotpoti (চটপটি). Chotpoti is a street food of cooked yellow peas with potato, egg, onion, chilli and tamarind sauce."
+ },
+ {
+  "q": "describe begoon bhaza",
+  "entities": [
+   "begun bhaja"
+  ],
+  "abstained": false,
+  "answer": "Begun bhaja (বেগুন ভাজা). Begun bhaja is slices of eggplant rubbed with turmeric and salt and shallow-fried."
+ },
+ {
+  "q": "tell me about pierogi",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "সবজি এর ক্যালরি কত?",
+  "entities": [
+   "mixed vegetables"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for vegetables per plate, from FoodBD plates with exactly these items (n=10) [confidence: high]: Calories (kcal) ~39 (range 9-163).\nApproximate: FoodBD has no separate class for mixed vegetables ~ vegetables."
+ },
+ {
+  "q": "photos of tehari",
+  "entities": [
+   "tehari"
+  ],
+  "abstained": false,
+  "answer": "Tehari (তেহারি). I have no verified pictures of Tehari in my image gallery, so I am not showing unrelated photos."
+ },
+ {
+  "q": "ইলীশ মাছ কি?",
+  "entities": [
+   "hilsha fish"
+  ],
+  "abstained": false,
+  "answer": "Ilish (hilsa) (ইলিশ মাছ). Ilish, the hilsa fish, is the national fish of Bangladesh. It is oily and bony and is cooked as shorshe ilish, ilish bhaja or ilish paturi."
+ },
+ {
+  "q": "how many calories are in kura?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "kacha galla er chobi dekhao",
+  "entities": [
+   "kacha golla"
+  ],
+  "abstained": false,
+  "answer": "Kacha golla (কাঁচাগোল্লা). I have no verified pictures of Kacha golla in my image gallery, so I am not showing unrelated photos."
+ },
+ {
+  "q": "what is eggh?",
+  "entities": [
+   "egg"
+  ],
+  "abstained": false,
+  "answer": "Egg. In the FoodBD meal-photo dataset, egg appears in 88 annotated meals, most often served with Daal (lentil soup), Bhat (plain rice), Murgir torkari (chicken curry)."
+ },
+ {
+  "q": "vegetabhlesh ki?",
+  "entities": [
+   "vegetables"
+  ],
+  "abstained": false,
+  "answer": "Vegetables. In the FoodBD meal-photo dataset, vegetables appears in 85 annotated meals, most often served with Bhat (plain rice), Daal (lentil soup), Polao."
+ },
+ {
+  "q": "show me pictures of kacha golla",
+  "entities": [
+   "kacha golla"
+  ],
+  "abstained": false,
+  "answer": "Kacha golla (কাঁচাগোল্লা). I have no verified pictures of Kacha golla in my image gallery, so I am not showing unrelated photos."
+ },
+ {
+  "q": "potato mashed ar salad er calorie koto?",
+  "entities": [
+   "potato mashed",
+   "salad"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for potato-mashed + salad per plate, from FoodBD plates with exactly these items (n=3) [confidence: low]: Calories (kcal) ~78 (range 52-117)."
+ },
+ {
+  "q": "baklava ki?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "how many calories are in roshmaai?",
+  "entities": [
+   "roshmalai"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for sweets per plate, from FoodBD plates with exactly these items (n=14) [confidence: high]: Calories (kcal) ~145 (range 43-489).\nApproximate: FoodBD has no separate class for roshmalai ~ sweets."
+ },
+ {
+  "q": "what is rui mocher jhol?",
+  "entities": [
+   "rui fish curry"
+  ],
+  "abstained": false,
+  "answer": "Rui macher jhol (রুই মাছের ঝোল). Rui macher jhol is a light curry of rohu fish, often with potatoes, cooked with turmeric and cumin."
+ },
+ {
+  "q": "explain quantum computing",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "potsto mashyed er calorie koto?",
+  "entities": [
+   "potato mashed"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for potato-mashed per plate, from FoodBD plates with exactly these items (n=10) [confidence: high]: Calories (kcal) ~122 (range 32-461)."
+ },
+ {
+  "q": "চটপটি সম্পর্কে বলো",
+  "entities": [
+   "chotpoti"
+  ],
+  "abstained": false,
+  "answer": "Chotpoti (চটপটি). Chotpoti is a street food of cooked yellow peas with potato, egg, onion, chilli and tamarind sauce."
+ },
+ {
+  "q": "how to make a website",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "protein in botrupe",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "how many calories are in vexgha?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "protein in dimer torkari",
+  "entities": [
+   "egg curry"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for egg-boiled per plate, from FoodBD plates with exactly these items (n=18) [confidence: high]: Protein (g) ~5 (range 1-16).\nApproximate: FoodBD has no separate class for egg curry ~ egg-boiled."
+ },
+ {
+  "q": "how many calories are in gorur mangsho?",
+  "entities": [
+   "beef curry"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for beef per plate, from FoodBD plates with exactly these items (n=11) [confidence: high]: Calories (kcal) ~167 (range 42-658)."
+ },
+ {
+  "q": "tell me about ghatavex",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "protein in shorshe ilish",
+  "entities": [
+   "shorshe ilish"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for fish per plate, from FoodBD plates with exactly these items (n=22) [confidence: high]: Protein (g) ~19 (range 5-64).\nApproximate: FoodBD has no separate class for shorshe ilish ~ fish."
+ },
+ {
+  "q": "what is goroor mangshho?",
+  "entities": [
+   "beef curry"
+  ],
+  "abstained": false,
+  "answer": "Gorur mangsho (beef curry) (গরুর মাংস). Gorur mangsho is a spicy Bangladeshi beef curry cooked with onion, garlic, ginger and garam masala. It is a staple at Eid feasts."
+ },
+ {
+  "q": "describe jhalmuri",
+  "entities": [
+   "jhalmuri"
+  ],
+  "abstained": false,
+  "answer": "Jhalmuri (ঝালমুড়ি). Jhalmuri is puffed rice tossed with mustard oil, onion, chilli, chanachur and spices."
+ },
+ {
+  "q": "ভাত কি?",
+  "entities": [
+   "rice"
+  ],
+  "abstained": false,
+  "answer": "Bhat (plain rice) (ভাত). Bhat is plain boiled rice. It is the staple food of Bangladesh and is eaten with daal, fish, vegetables or meat curry."
+ },
+ {
+  "q": "what is hummus?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "protein in zolitru",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "describe bhhat",
+  "entities": [
+   "rice"
+  ],
+  "abstained": false,
+  "answer": "Bhat (plain rice) (ভাত). Bhat is plain boiled rice. It is the staple food of Bangladesh and is eaten with daal, fish, vegetables or meat curry."
+ },
+ {
+  "q": "sweets er calorie koto?",
+  "entities": [
+   "sweets"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for sweets per plate, from FoodBD plates with exactly these items (n=14) [confidence: high]: Calories (kcal) ~145 (range 43-489)."
+ },
+ {
+  "q": "sheengara niye bolo",
+  "entities": [
+   "singara"
+  ],
+  "abstained": false,
+  "answer": "Singara (সিঙ্গারা). Singara is a fried pastry stuffed with spiced potato, sometimes with liver or peanuts."
+ },
+ {
+  "q": "photos of bhheef",
+  "entities": [
+   "beef"
+  ],
+  "abstained": false,
+  "answer": "Beef. I have no verified pictures of Beef in my image gallery, so I am not showing unrelated photos."
+ },
+ {
+  "q": "ভাত এর ক্যালরি কত?",
+  "entities": [
+   "rice"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for rice per plate, from FoodBD plates with exactly these items (n=51) [confidence: high]: Calories (kcal) ~197 (range 61-636)."
+ },
+ {
+  "q": "show me pictures of roshhgalla",
+  "entities": [
+   "roshgolla"
+  ],
+  "abstained": false,
+  "answer": "Roshgolla (রসগোল্লা). Here are 5 verified pictures of Roshgolla."
+ },
+ {
+  "q": "crepe er calorie koto?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "what is kothu parotta?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "describe bakarkhani",
+  "entities": [
+   "bakorkhani"
+  ],
+  "abstained": false,
+  "answer": "Bakorkhani (বাকরখানি). Bakorkhani is a thick, crisp, layered flatbread associated with Old Dhaka, usually eaten with tea."
+ },
+ {
+  "q": "show me pictures of potato mashhed",
+  "entities": [
+   "potato mashed"
+  ],
+  "abstained": false,
+  "answer": "Potato mashed. I have no verified pictures of Potato mashed in my image gallery, so I am not showing unrelated photos."
+ },
+ {
+  "q": "drivex ki?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "what is zotruta?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "write a poem about rain",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "tell me about doi",
+  "entities": [
+   "yogurt"
+  ],
+  "abstained": false,
+  "answer": "Doi / Mishti doi (দই). Mishti doi is sweetened yogurt set with caramelised milk in clay pots. Bogura is famous for it."
+ },
+ {
+  "q": "show me pictures of ruti",
+  "entities": [
+   "ruti"
+  ],
+  "abstained": false,
+  "answer": "Ruti (রুটি). Here are 5 verified pictures of Ruti."
+ },
+ {
+  "q": "what is potsto mashyed?",
+  "entities": [
+   "potato mashed"
+  ],
+  "abstained": false,
+  "answer": "Potato mashed. In the FoodBD meal-photo dataset, Aloo bhorta appears in 67 annotated meals, most often served with Bhat (plain rice), Daal (lentil soup), Salad."
+ },
+ {
+  "q": "khala bhhuna er chobi dekhao",
+  "entities": [
+   "kala bhuna"
+  ],
+  "abstained": false,
+  "answer": "Kala bhuna (কালা ভুনা). Here are 5 verified pictures of Kala bhuna."
+ },
+ {
+  "q": "show me pictures of chotpoti",
+  "entities": [
+   "chotpoti"
+  ],
+  "abstained": false,
+  "answer": "Chotpoti (চটপটি). I have no verified pictures of Chotpoti in my image gallery, so I am not showing unrelated photos."
+ },
+ {
+  "q": "kuzoku ki?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "tell me about poirota",
+  "entities": [
+   "porota"
+  ],
+  "abstained": false,
+  "answer": "Porota (পরোটা). Porota is a layered, pan-fried flatbread made from wheat flour with oil or ghee."
+ },
+ {
+  "q": "show me pictures of morog polao",
+  "entities": [
+   "morog polao"
+  ],
+  "abstained": false,
+  "answer": "Morog polao (মোরগ পোলাও). I have no verified pictures of Morog polao in my image gallery, so I am not showing unrelated photos."
+ },
+ {
+  "q": "schnitzel er calorie koto?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "সালাদ কি?",
+  "entities": [
+   "salad"
+  ],
+  "abstained": false,
+  "answer": "Salad (সালাদ). In Bangladesh a side salad is usually sliced cucumber, onion, tomato and green chilli with lemon."
+ },
+ {
+  "q": "বেগূনি সম্পর্কে বলো",
+  "entities": [
+   "beguni"
+  ],
+  "abstained": false,
+  "answer": "Beguni (বেগুনি). Beguni is eggplant slices dipped in gram-flour batter and deep fried. It is a popular iftar snack."
+ },
+ {
+  "q": "tom yum er calorie koto?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "ইলিশ মাছ সম্পর্কে বলো",
+  "entities": [
+   "hilsha fish"
+  ],
+  "abstained": false,
+  "answer": "Ilish (hilsa) (ইলিশ মাছ). Ilish, the hilsa fish, is the national fish of Bangladesh. It is oily and bony and is cooked as shorshe ilish, ilish bhaja or ilish paturi."
+ },
+ {
+  "q": "photos of saladh",
+  "entities": [
+   "salad"
+  ],
+  "abstained": false,
+  "answer": "Salad (সালাদ). Here are 5 verified pictures of Salad."
+ },
+ {
+  "q": "tell me about hiocken",
+  "entities": [
+   "chicken"
+  ],
+  "abstained": false,
+  "answer": "Chicken. In the FoodBD meal-photo dataset, Murgir torkari (chicken curry) appears in 127 annotated meals, most often served with Bhat (plain rice), Ruti, Daal (lentil soup)."
+ },
+ {
+  "q": "describe piayju",
+  "entities": [
+   "piyaju"
+  ],
+  "abstained": false,
+  "answer": "Piyaju (পিঁয়াজু). Piyaju is a deep-fried fritter made of lentil paste and onion, eaten at iftar and as a street snack."
+ },
+ {
+  "q": "kacchi biriyani ki?",
+  "entities": [
+   "biriyani"
+  ],
+  "abstained": false,
+  "answer": "Biriyani (বিরিয়ানি). Biriyani is a layered rice dish cooked with meat such as mutton, beef or chicken, aromatic spices, ghee and often potatoes. Dhaka's kacchi biriyani cooks raw marinated mutton together with the rice."
+ },
+ {
+  "q": "ইলিশ মাছের ক্যালরি কত?",
+  "entities": [
+   "hilsha fish"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for fish per plate, from FoodBD plates with exactly these items (n=22) [confidence: high]: Calories (kcal) ~120 (range 28-506).\nApproximate: FoodBD has no separate class for hilsha fish ~ fish.\nPer 100 g of Ilish (hilsa) (FoodNetBD entry 'Hilsa curry'): energy 250 kcal, protein 19.0 g, fat 18.0 g, carbohydrate 3.0 g, fibre 0.4 g."
+ },
+ {
+  "q": "show me pictures of fuchka",
+  "entities": [
+   "fuchka"
+  ],
+  "abstained": false,
+  "answer": "Fuchka (ফুচকা). Here are 5 verified pictures of Fuchka."
+ },
+ {
+  "q": "khichuri ar daal er calorie koto",
+  "entities": [
+   "khichuri",
+   "daal"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for khichuri + daal per plate, from FoodBD plates with exactly these items (n=14) [confidence: high]: Calories (kcal) ~278 (range 155-498)."
+ },
+ {
+  "q": "what is a croissant?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ },
+ {
+  "q": "tell me about shorshe ilsh",
+  "entities": [
+   "shorshe ilish"
+  ],
+  "abstained": false,
+  "answer": "Shorshe ilish (সর্ষে ইলিশ). Shorshe ilish is hilsa fish cooked in a gravy of mustard paste and mustard oil with green chillies."
+ },
+ {
+  "q": "show me picture of ruti and murgir mangsho",
+  "entities": [
+   "chicken curry",
+   "ruti"
+  ],
+  "abstained": false,
+  "answer": "Murgir torkari (chicken curry) (মুরগির তরকারি). Here are 3 verified pictures of Murgir torkari (chicken curry).\nRuti (রুটি). Here are 3 verified pictures of Ruti."
+ },
+ {
+  "q": "show me pictures of bhat",
+  "entities": [
+   "rice"
+  ],
+  "abstained": false,
+  "answer": "Bhat (plain rice) (ভাত). Here are 5 verified pictures of Bhat (plain rice)."
+ },
+ {
+  "q": "বেগুনী কি?",
+  "entities": [
+   "beguni"
+  ],
+  "abstained": false,
+  "answer": "Beguni (বেগুনি). Beguni is eggplant slices dipped in gram-flour batter and deep fried. It is a popular iftar snack."
+ },
+ {
+  "q": "what is usually eaten with khichuri?",
+  "entities": [
+   "khichuri"
+  ],
+  "abstained": false,
+  "answer": "Khichuri (খিচুড়ি). Khichuri is rice and lentils cooked together with turmeric and spices. It is popular on rainy days and is often served with egg, beef or fried eggplant. In the FoodBD meal-photo dataset, Khichuri appears in 100 annotated meals, most often served with Daal (lentil soup), Bhat (plain rice), fish."
+ },
+ {
+  "q": "describe beef curry plate",
+  "entities": [
+   "beef curry"
+  ],
+  "abstained": false,
+  "answer": "Gorur mangsho (beef curry) (গরুর মাংস). Gorur mangsho is a spicy Bangladeshi beef curry cooked with onion, garlic, ginger and garam masala. It is a staple at Eid feasts."
+ },
+ {
+  "q": "how many calories in kala bhuna?",
+  "entities": [
+   "kala bhuna"
+  ],
+  "abstained": false,
+  "answer": "Nutrition for beef per plate, from FoodBD plates with exactly these items (n=11) [confidence: high]: Calories (kcal) ~167 (range 42-658).\nApproximate: FoodBD has no separate class for kala bhuna ~ beef."
+ },
+ {
+  "q": "masala dosa ki?",
+  "entities": [],
+  "abstained": true,
+  "answer": "I could not find this dish in my Bangladeshi-food knowledge base, so I won't guess."
+ }
+]
