@@ -46,7 +46,7 @@ GitHub repo ── GitHub Actions ──► GitHub Pages  https://<github-user>.
 5. For a long session with the browser closed: **Save Version → Save & Run All (Commit)**. It serves for `SERVE_HOURS` (11.5 h).
    To stop early: *View Active Events* → stop the run.
 
-First start takes ~5–10 min (model downloads); later starts reuse Kaggle's model cache less often, so expect a few minutes each time.
+Each start takes ~5–10 min (models download fresh in every Kaggle session). Start the server a little before you need it.
 
 ## Updating
 * **New results** (you re-ran the research notebook + section 17): just restart the serving notebook.
