@@ -812,8 +812,8 @@ def wiki_summary(name):
     return _WIKI[name]
 _B = dict(linker=False, phonetic=False, retriever='base', grader=False, rewrite=False, verify=False, abstain=None, guard=False, link_verify=False, probe=False)
 _F = dict(linker=True, phonetic=True, retriever='hybrid', grader=True, rewrite=True, verify=True, abstain='grader', guard=True, link_verify=True, probe=True)
-SYSTEMS = {'B0 naive dense (v1)': dict(_B), 'B1 dense+threshold (v2-base)': dict(_B, abstain='base'), 'B2 CRAG-style': dict(_B, retriever='hybrid', grader=True, rewrite=True, abstain='grader'), 'B3 v2 linker+threshold': dict(_B, linker=True, abstain='base', guard=True), 'FULL v8': dict(_F), 'FULL - phonetic repair': dict(_F, phonetic=False), 'FULL - link verification': dict(_F, link_verify=False), 'FULL - intent-stripped grading': dict(_F, probe=False), 'FULL - evaluator': dict(_F, grader=False, rewrite=False, abstain='dense', link_verify=False, probe=False), 'FULL - verifier': dict(_F, verify=False)}
-FULL = SYSTEMS['FULL v8']
+SYSTEMS = {'B0 naive dense (v1)': dict(_B), 'B1 dense+threshold (v2-base)': dict(_B, abstain='base'), 'B2 CRAG-style': dict(_B, retriever='hybrid', grader=True, rewrite=True, abstain='grader'), 'B3 v2 linker+threshold': dict(_B, linker=True, abstain='base', guard=True), 'FULL v10': dict(_F), 'FULL - phonetic repair': dict(_F, phonetic=False), 'FULL - link verification': dict(_F, link_verify=False), 'FULL - intent-stripped grading': dict(_F, probe=False), 'FULL - evaluator': dict(_F, grader=False, rewrite=False, abstain='dense', link_verify=False, probe=False), 'FULL - verifier': dict(_F, verify=False)}
+FULL = SYSTEMS['FULL v10']
 
 def rewrites(q):
     out = []
@@ -873,11 +873,21 @@ def repaired_queries(f):
                     out[c] = nq.replace(sp, norm(DOCS[c]['name'].split('(')[0]))
     return out
 
-def link_coverage(f, c, how):
-    """Share of the question's content words explained by the repaired span (near-miss foreign dishes are only partly explained)."""
+def link_coverage(f, c, how, ents=None):
+    """Share of the question's content words explained by the repaired span (near-miss foreign dishes are only partly explained).
+    v10: words explained by the OTHER linked dishes are left out ('begun, begun bhaji and begun torkari' rejected begun bhaji at 40 %)."""
     sp = _span_of(how)
     ct = content_query(f['q']).split()
-    return len(sp.split()) / max(len(ct), 1) if sp else 1.0
+    if not sp:
+        return 1.0
+    other = set()
+    for c2, (_, h2) in (ents or {}).items():
+        if c2 == c:
+            continue
+        s2 = _span_of(h2) or (h2.split(':', 1)[1].split(' (')[0] if h2.startswith('alias:') else '')
+        other |= set(s2.split())
+    rest = [t for t in ct if t not in other] or ct
+    return min(1.0, len(sp.split()) / max(len(rest), 1))
 
 def _finish(f):
     q = f['q']
@@ -916,7 +926,7 @@ def _verified_links(f, ents, S, TH, tr):
             if how.startswith('alias:') or c not in DOCS:
                 continue
             ls, rk = (f['link_score'].get(c, 0.0), f.get('link_rank', {}).get(c, 99))
-            lr, cov = (f.get('link_rep', {}).get(c, 0.0), link_coverage(f, c, how))
+            lr, cov = (f.get('link_rep', {}).get(c, 0.0), link_coverage(f, c, how, ents))
             if cov < TH.get('cover_min', 0.0):
                 ents.pop(c)
                 tr.append(f"LINK_REJECTED {how} (explains only {cov:.0%} of the question's content words < {TH['cover_min']:.0%})")
@@ -1288,7 +1298,7 @@ def classify_image(path, heal=None, agree_conf=0.5, w_fuse=None, w_heal=None):
     uncertain = conf < IMG_TAU
     cat = None
     if uncertain:
-        tr.append(f'IMAGE_UNCERTAIN {conf:.2f} < tau {IMG_TAU:.2f} -> do not name a dish')
+        tr.append(f'IMAGE_UNCERTAIN {conf:.3f} < tau {IMG_TAU:.3f} -> do not name a dish')
         cv = category_vote(fused)
         if cv and CAT_TAU is not None and (cv[1] >= CAT_TAU):
             cat = cv
